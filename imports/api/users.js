@@ -8,8 +8,8 @@ Accounts.validateNewUser((user) => {
   new SimpleSchema({
     email: {
       type: String,
-      regEx: SimpleSchema.RegEx.Email
-    }
+      regEx: SimpleSchema.RegEx.Email,
+    },
   }).validate({ email });
 
   return true;
