@@ -12,14 +12,21 @@
         "allowImportExportEverywhere": true
     },
     "plugins": [
+<<<<<<< HEAD
         "meteor",
         "mocha"
+=======
+        "meteor"
+>>>>>>> 1ab3365072515418d35318d3e9693ebb3e3f41b6
     ],
     "settings": {
       "import/resolver": "meteor"
     },
     "rules": {
+<<<<<<< HEAD
         "mocha/no-exclusive-tests": "error",
+=======
+>>>>>>> 1ab3365072515418d35318d3e9693ebb3e3f41b6
         "indent": [
             "error",
             2
