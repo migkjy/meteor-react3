@@ -28,7 +28,11 @@ if (Meteor.isServer) {
       };
       expect(() => {
         validateNewUser(testUser);
+<<<<<<< HEAD
       }).toThrow();
+=======
+      }).toNotThrow();
+>>>>>>> 1ab3365072515418d35318d3e9693ebb3e3f41b6
     });
   });
 }
