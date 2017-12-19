@@ -12,7 +12,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  'notes.insert'() {
+  'notes.insert': function () {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
@@ -21,10 +21,10 @@ Meteor.methods({
       title: '',
       body: '',
       userId: this.userId,
-      updatedAt: moment().valueOf()
+      updatedAt: moment().valueOf(),
     });
   },
-  'notes.remove'(_id) {
+  'notes.remove': function (_id) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
@@ -32,13 +32,13 @@ Meteor.methods({
     new SimpleSchema({
       _id: {
         type: String,
-        min: 1
-      }
+        min: 1,
+      },
     }).validate({ _id });
 
     Notes.remove({ _id, userId: this.userId });
   },
-  'notes.update'(_id, updates) {
+  'notes.update': function (_id, updates) {
     if (!this.userId) {
       throw new Meteor.Error('not-authorized');
     }
@@ -46,29 +46,29 @@ Meteor.methods({
     new SimpleSchema({
       _id: {
         type: String,
-        min: 1
+        min: 1,
       },
       title: {
         type: String,
-        optional: true
+        optional: true,
       },
       body: {
         type: String,
-        optional: true
-      }
+        optional: true,
+      },
     }).validate({
       _id,
-      ...updates
+      ...updates,
     });
 
     Notes.update({
       _id,
-      userId: this.userId
+      userId: this.userId,
     }, {
       $set: {
         updatedAt: moment().valueOf(),
-        ...updates
-      }
+        ...updates,
+      },
     });
-  }
+  },
 });
