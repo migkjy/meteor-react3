@@ -19,11 +19,44 @@ if (Meteor.isClient) {
     });
 
     it('should call loginWithPassword with the form data', () => {
+      const email = 'migkjy@test.com';
+      const password = 'password123';
+      const spy = expect.createSpy();
+      const wrapper = mount(<Login loginWithPassword={spy} />);
 
+      // use node to get in HTMLInputElement
+      // can study at
+      // https://developer.mozilla.org/ko/docs/Web/API/HTMLInputElement
+      wrapper.ref('email').node.value = email;
+      wrapper.ref('password').node.value = password;
+
+      // simulating app 'submit'
+      wrapper.find('form').simulate('submit');
+
+      // loginWithPassword need 3 prams = {email}, password, function()
+      // at first call(calls[0]),
+      // first argument(arguments[0]) is email(object)
+      // second argument(arguments[1]) is password(string)
+      expect(spy.calls[0].arguments[0]).toEqual({ email });
+      expect(spy.calls[0].arguments[1]).toBe(password);
     });
 
-    it('should callset loginWithPassword callback errors', () => {
+    it('should call loginWithPassword callback errors', () => {
+      const spy = expect.createSpy();
+      const wrapper = mount(<Login loginWithPassword={spy} />);
 
+      wrapper.find('form').simulate('submit');
+
+      // loginWithPassword need 3 prams = {email}, password, function()
+      // at first call(calls[0]),
+      // third argument(arguments[1]) is a function() setting state.
+      spy.calls[0].arguments[2]({});
+      // checking state has been changed when calling with ({}) - something?
+      expect(wrapper.state('error').length).toNotBe(0);
+
+      spy.calls[0].arguments[2]();
+      // checking state has been changed when calling with () - nothing?
+      expect(wrapper.state('error').length).toBe(0);
     });
   });
 }

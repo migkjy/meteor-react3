@@ -36,5 +36,5 @@
   },
   "eslintConfig": {
     "extends": "@meteorjs/eslint-config-meteor"
-    }
+  }
 }
