@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { PrivateHeader } from './PrivateHeader';
-import NoteList from './NoteList';
+import { NoteList } from './NoteList';
 
 export default () => (
   <div>
