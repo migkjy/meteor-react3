@@ -3,25 +3,24 @@ import expect from 'expect';
 import { mount } from 'enzyme';
 import { Meteor } from 'meteor/meteor';
 
-import { notes } from '../fixtures/fixtures';
 import { NoteList } from './NoteList';
+import { notes } from '../fixtures/fixtures';
 
 if (Meteor.isClient) {
-  describe('NoteList', function () {
-
-    it('should render NoteListItem for each note', function () {
-      const wrapper = mount(<NoteList notes={notes}/>);
+  describe('NoteList', () => {
+    it('shoutd render NoteListItem for each note', () => {
+      const wrapper = mount(<NoteList notes={notes} />);
 
       expect(wrapper.find('NoteListItem').length).toBe(2);
       expect(wrapper.find('NoteListEmptyItem').length).toBe(0);
     });
 
-    it('should render NoteListEmptyItem if zero notes', function () {
-      const wrapper = mount(<NoteList notes={[]}/>);
+    it('should render NoteListEmptyItem if zero notes', () => {
+      // const wrapper = mount(<NoteList notes="" />); should not pass string/null, array required
+      const wrapper = mount(<NoteList notes={[]} />);
 
       expect(wrapper.find('NoteListItem').length).toBe(0);
       expect(wrapper.find('NoteListEmptyItem').length).toBe(1);
     });
-
   });
 }

@@ -8,20 +8,16 @@ import NoteListHeader from './NoteListHeader';
 import NoteListItem from './NoteListItem';
 import NoteListEmptyItem from './NoteListEmptyItem';
 
-export const NoteList = (props) => {
-  return (
-    <div className="item-list">
-      <NoteListHeader/>
-      { props.notes.length === 0 ? <NoteListEmptyItem/> : undefined }
-      {props.notes.map((note) => {
-        return <NoteListItem key={note._id} note={note}/>;
-      })}
-    </div>
-  );
-};
+export const NoteList = props => (
+  <div className="item-list">
+    <NoteListHeader />
+    { props.notes.length === 0 ? <NoteListEmptyItem /> : undefined}
+    {props.notes.map(note => <NoteListItem key={note._id} note={note} />)}
+  </div>
+);
 
 NoteList.propTypes = {
-  notes: React.PropTypes.array.isRequired
+  notes: React.PropTypes.array.isRequired,
 };
 
 export default createContainer(() => {
@@ -32,13 +28,11 @@ export default createContainer(() => {
   return {
     notes: Notes.find({}, {
       sort: {
-        updatedAt: -1
-      }
-    }).fetch().map((note) => {
-      return {
-        ...note,
-        selected: note._id === selectedNoteId
-      };
-    })
+        updatedAt: -1,
+      },
+    }).fetch().map(note => ({
+      ...note,
+      selected: note._id === selectedNoteId,
+    })),
   };
 }, NoteList);
