@@ -66,7 +66,8 @@ if (Meteor.isClient) {
     });
 
     it('should set state for new note', () => {
-      const wrapper = mount(<Editor note={notes[0]} browserHistory={browserHistory} call={call} />);
+      const wrapper = mount(<Editor browserHistory={browserHistory} call={call} />);
+
       wrapper.setProps({
         selectedNoteId: notes[0]._id,
         note: notes[0],
