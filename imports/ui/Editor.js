@@ -14,17 +14,17 @@ export class Editor extends React.Component {
       body: '',
     };
   }
-  componentDidUpdate(prevProps, prevState) {
-    const currentNoteId = this.props.note ? this.props.note._id : undefined;
-    const prevNoteId = prevProps.note ? prevProps.note_id : undefined;
+  // componentDidUpdate(prevProps, prevState) {
+  //   const currentNoteId = this.props.note ? this.props.note._id : undefined;
+  //   const prevNoteId = prevProps.note ? prevProps.note_id : undefined;
 
-    if (currentNoteId && currentNoteId !== prevNoteId) {
-      this.setState({
-        title: this.props.note.title,
-        body: this.props.note.body,
-      });
-    }
-  }
+  //   if (currentNoteId && currentNoteId !== prevNoteId) {
+  //     this.setState({
+  //       title: this.props.note.title,
+  //       body: this.props.note.body,
+  //     });
+  //   }
+  // }
   handleTitleChange(e) {
     const title = e.target.value;
     this.setState({ title });
